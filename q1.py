@@ -8,6 +8,7 @@ N = 1000
 mu = np.array([0, 0])
 cov = np.matrix([[0.1, 0], [0, 0.1]])  # diagonal covariance
 
+# this function is from stackoverflow
 def norm_pdf_multivariate(x, mu, sigma):
     size = len(x)
     if size == len(mu) and (size, size) == sigma.shape:
@@ -46,8 +47,12 @@ for i in range(10):
 	z = estimateArea()
 	Zs.append(z)
 
-print np.mean(Zs)
-print np.var(Zs)
+print "My proposal distribution is a multivariate gaussian"
+print "with mean = ", mu, " and covariance = "
+print cov
+
+print "    Mean of my estimate: ", np.mean(Zs)
+print "Variance of my estimate: ", np.var(Zs)
 
 #plt.plot(x, y, 'x')
 #plt.axis('equal')

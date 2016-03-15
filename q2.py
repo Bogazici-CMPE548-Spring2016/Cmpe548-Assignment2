@@ -10,7 +10,7 @@ A = np.matrix([	[0.25, 	0, 		0, 		0.25, 	0.25, 	0.25],
 			   	[0.25,	0.25,	0,		0.25,	0.25,	0	],
 			   	[0.25,	0,		0,		0.25,	0.25,	0.25]])
 
-A = np.transpose(A)#Transition matrixi tersten olusturduk
+A = np.transpose(A)#Transition matrixi tersten olusturdum
 
 L, B = np.linalg.eig(A)
 
@@ -24,11 +24,23 @@ B = B[:,idx]
 B_inv = np.linalg.inv(B)
 #print B_inv
 S = B * np.linalg.matrix_power(np.diag(L),100) * B_inv
-print S[:,0]
 
 P = S[:,0]
 
 epsilon = 1e-8
+print "Stationary distribution of A: "
+print P
+isUniform = True
+for i in range(5):
+	if np.abs(P[i]-P[i+1]) > epsilon:
+		isUniform = False
+
+
+if not isUniform:
+	print "This stationary distribution is NOT a uniform distribution"
+else:
+	print "This stationary distribution is a uniform distribution"
+
 isBalanced = True
 for i in range(6):
 	for j in range(6):
